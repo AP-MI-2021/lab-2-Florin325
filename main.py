@@ -65,9 +65,39 @@ def test_is_palindrome():
     assert is_palindrome(134) is False
 
 
+def get_newton_sqrt(n, steps):
+    x = 2
+    # functia care are radacina sqrt(n) este f(x)=x^2-n
+    for i in range(1, steps):
+        x = x-(x*x-n)/(2*x)
+    return x
+
+
 def main():
-    test_is_palindrome()
-    test_get_goldbach()
+  print ('''
+    1. Goldbach
+    2. Numar palindrom
+    3. Algoritmul lui Newton
+     ''')
+  while True:
+     x=int(input('comanda='))
+     if x==1:
+         n=int(input('Numar='))
+         if get_goldbach(n) is False:
+             print("NUmarul nu se poate scrie ca suma de nr. prime")
+
+         print(get_goldbach(n))
+     if x == 2:
+         n = int(input('Numar='))
+         if is_palindrome(n):
+             print("Numarul este palindrom")
+         else:
+            print("Numarul nu este palindrom")
+     if x == 3:
+         n = int(input('Numar='))
+         steps = int(input('Numar de pasi='))
+
+         print(get_newton_sqrt(n, steps))
 
 
 if __name__ == "__main__":
